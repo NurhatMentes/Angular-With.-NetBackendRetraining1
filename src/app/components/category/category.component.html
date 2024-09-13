@@ -1,7 +1,9 @@
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-      The current link item
+<div class="list-group" style="margin-top: 11%;">
+    <a (click)="setCurrentCategory(category)" 
+    routerLink="/products/category/{{category.categoryId}}"
+    *ngFor="let category of categories" 
+    href="#" [class]="getCurrentCategoryClass(category)" aria-current="true">
+      {{category.categoryName}}
     </a>
-    <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-    <a href="#" class="list-group-item list-group-item-action">A third link item</a>
   </div>
+

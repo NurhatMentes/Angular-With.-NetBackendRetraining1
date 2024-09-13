@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import $ from 'jquenpry';
 
 @Component({
   selector: 'app-root',
