@@ -8,10 +8,13 @@ import { ProductComponent } from './components/product/product.component';
 import { CategoryComponent } from './components/category/category.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import * as $ from 'jquery';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 
 
 @NgModule({
@@ -20,14 +23,19 @@ import { FormsModule } from '@angular/forms';
     ProductComponent,
     CategoryComponent,
     NaviComponent,
-    VatAddedPipe
+    VatAddedPipe,
+    CartSummaryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right"
+    })
   ],
   providers: [
     provideClientHydration()

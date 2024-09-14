@@ -3,6 +3,8 @@ import { Product } from '../../models/product';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../../services/cart.service';
 
 
 @Component({
@@ -16,7 +18,8 @@ dataLoaded = false;
 searchQuery: string = '';
 filteredProducts: any[] = [];
 
-constructor(private productService:ProductService, private activatedRoute:ActivatedRoute){}
+constructor(private productService:ProductService, private activatedRoute:ActivatedRoute, 
+  private toastr: ToastrService, private cartService:CartService){}
 
 ngOnInit(): void {
   this.activatedRoute.params.subscribe(params=>{
@@ -49,4 +52,10 @@ filterProducts() {
     product.productName.toLowerCase().includes(this.searchQuery.toLowerCase())
   );
 }
+
+addToCard(product:Product){
+this.toastr.success("Add to card",product.productName)
+this.cartService.addToCart(product);
+}
+
 }

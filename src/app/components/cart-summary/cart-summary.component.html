@@ -1,0 +1,10 @@
+<li *ngIf="cartItems" class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Go to cart
+  </a>
+  <ul class="dropdown-menu">
+    <li *ngFor="let cartItem of cartItems"><a class="dropdown-item">{{ cartItem.product.productName }} 
+       <span class="badge text-bg-primary rounded-pill" style="margin-left: 8%;">{{cartItem.quantity}}</span>
+       <button type="button" class="btn-close" aria-label="Close" (click)="removeFromCart(cartItem.product)"></button></a> </li>
+  </ul>
+</li>
