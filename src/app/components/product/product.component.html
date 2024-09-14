@@ -4,6 +4,9 @@
   </div>
 </div>     
 
+<div class="mb-3">
+  <input type="search" [(ngModel)]="searchQuery" (ngModelChange)="filterProducts()" class="form-control" id="exampleFormControlInput1" placeholder="Product Find">
+</div>
 
 <table *ngIf="dataLoaded != false" class="table">
     <thead>
@@ -11,14 +14,16 @@
         <th scope="col">#</th>
         <th scope="col">Product Name</th>
         <th scope="col">Price</th>
+        <th scope="col">Vat Price</th>
         <th scope="col">Stock</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of filteredProducts">
         <th scope="row">{{product.productId}}</th>
-        <td>{{product.productName}}</td>
+        <td>{{product.productName | uppercase}}</td>
         <td>{{product.unitPrice}}</td>
+        <td>{{product.unitPrice | vatAdded:18 }}</td>
         <td>{{product.unitsInStock}}</td>
       </tr>
     </tbody>

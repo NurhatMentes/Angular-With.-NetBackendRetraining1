@@ -8,19 +8,26 @@ import { ProductComponent } from './components/product/product.component';
 import { CategoryComponent } from './components/category/category.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import * as $ from 'jquery';
+import { VatAddedPipe } from './pipes/vat-added.pipe';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
     CategoryComponent,
-    NaviComponent
+    NaviComponent,
+    VatAddedPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()

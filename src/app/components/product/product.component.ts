@@ -13,6 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductComponent implements OnInit{
 products:Product[]=[];
 dataLoaded = false;
+searchQuery: string = '';
+filteredProducts: any[] = [];
 
 constructor(private productService:ProductService, private activatedRoute:ActivatedRoute){}
 
@@ -27,10 +29,11 @@ ngOnInit(): void {
   })
 }
 
-getProducts(){
-  this.productService.getProducts().subscribe(response=>{
-    this.products = response.data
-   this.dataLoaded = true;
+getProducts() {
+  this.productService.getProducts().subscribe(response => {
+    this.products = response.data;
+    this.filteredProducts = this.products; 
+    this.dataLoaded = true;
   });
 }
 
@@ -41,4 +44,9 @@ getProductsByCategory(categoryId:number){
   });
 }
 
+filterProducts() {
+  this.filteredProducts = this.products.filter(product =>
+    product.productName.toLowerCase().includes(this.searchQuery.toLowerCase())
+  );
+}
 }
