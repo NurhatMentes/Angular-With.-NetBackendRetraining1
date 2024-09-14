@@ -1,0 +1,49 @@
+
+<div class="card text-bg-secondary  mb-3" style="margin-top: 3%;">
+    <div class="card-header text-bg-warning">Add Product</div>
+    <div class="card-body">
+      
+<form [formGroup]="productAddForm" (ngSubmit)="addProduct()" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="categoryId" class="form-label">Category</label>
+      <select id="categoryId" formControlName="categoryId" class="form-select" [ngClass]="{'is-invalid': productAddForm.get('categoryId').invalid && productAddForm.get('categoryId').touched}">
+        <option value="" disabled>Select a Category</option>
+        <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
+      </select>
+      <div *ngIf="productAddForm.get('categoryId').invalid && productAddForm.get('categoryId').touched" class="invalid-feedback">
+        Please select a category.
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="productName" class="form-label">Product Name</label>
+      <input id="productName" formControlName="productName" class="form-control" [ngClass]="{'is-invalid': productAddForm.get('productName').invalid && productAddForm.get('productName').touched}" />
+      <div *ngIf="productAddForm.get('productName').invalid && productAddForm.get('productName').touched" class="invalid-feedback">
+        Product name is required.
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="unitsInStock" class="form-label">Units in Stock</label>
+        <input id="unitsInStock" type="number" formControlName="unitsInStock" class="form-control" [ngClass]="{'is-invalid': productAddForm.get('unitsInStock').invalid && productAddForm.get('unitsInStock').touched}" />
+        <div *ngIf="productAddForm.get('unitsInStock').invalid && productAddForm.get('unitsInStock').touched" class="invalid-feedback">
+          Units in stock must be at least 1.
+        </div>
+      </div>
+  
+      <div class="col-md-6 mb-3">
+        <label for="unitPrice" class="form-label">Unit Price</label>
+        <input id="unitPrice" type="number" formControlName="unitPrice" class="form-control" [ngClass]="{'is-invalid': productAddForm.get('unitPrice').invalid && productAddForm.get('unitPrice').touched}" />
+        <div *ngIf="productAddForm.get('unitPrice').invalid && productAddForm.get('unitPrice').touched" class="invalid-feedback">
+          Unit price must be greater than 0.
+        </div>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary w-100" (click)="addProduct()">Add Product</button>
+  </form>
+    </div>
+  </div>
+
+  

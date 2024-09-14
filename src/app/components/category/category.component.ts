@@ -22,7 +22,7 @@ ngOnInit(): void {
 }
 
 getCategories(){
-  this.categoryService.getProducts().subscribe(response=>{
+  this.categoryService.getCategories().subscribe(response=>{
     this.categories = response.data
    this.dataLoaded = true;
   });
