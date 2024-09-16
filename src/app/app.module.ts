@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +16,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { ProductAddComponent } from './components/product-add/product-add.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthGuard } from './guards/auth.guard';
+import { ProductUpdateComponent } from './components/product-update/product-update.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
     NaviComponent,
     VatAddedPipe,
     CartSummaryComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    LoginComponent,
+    ProductUpdateComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -36,12 +42,15 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot({
+    ToastrModule.forRoot({ 
       positionClass:"toast-bottom-right"
     })
   ],
   providers: [
-    provideClientHydration()
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

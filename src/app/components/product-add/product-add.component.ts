@@ -56,7 +56,7 @@ export class ProductAddComponent implements OnInit{
         }
       });
     } else {
-      this.toastr.error("Check the form.", "Attention");
+      console.log("Check the form.", "Attention");
     }
   }
   
