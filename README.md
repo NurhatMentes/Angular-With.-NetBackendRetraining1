@@ -1,11 +1,10 @@
 Angular-With.-NetBackendRetraining1
 ---
-
 ## Related Project
 
 You can explore the backend counterpart of this project developed using .NET 8:
 
-**[Angular UI Project]([https://github.com/NurhatMentes/northwind](https://github.com/NurhatMentes/.NetBackendRetraining1-With-Angular))**
+**[.NET 8 Backend Project](https://github.com/NurhatMentes/.NetBackendRetraining1-With-Angular)**
 
 ---
 
